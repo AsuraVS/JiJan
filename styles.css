@@ -1,0 +1,769 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap");
+
+:root {
+  --paper: #f6f1e7;
+  --card: #fffdf8;
+  --ink: #1f1d1a;
+  --ink-light: #6b655b;
+  --line: #e2d9c8;
+  --green: #2f6b3a;
+  --yellow: #f3c969;
+  --red: #b23a2a;
+  --red-light: #f6dcd5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Work Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.muted {
+  color: var(--ink-light);
+  font-size: 14px;
+}
+
+.num {
+  font-family: "JetBrains Mono", monospace;
+}
+
+
+/* header */
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 24px 8px;
+}
+
+.brand {
+  font-family: "Fraunces", serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand span {
+  background: linear-gradient(transparent 60%, var(--yellow) 60%);
+}
+
+.brand small {
+  display: block;
+  margin-top: 6px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-light);
+}
+
+/* tombol hari */
+
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 12px 24px 0;
+  overflow-x: auto;
+}
+
+.day-tabs button {
+  position: relative;
+  padding: 6px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-light);
+  white-space: nowrap;
+}
+
+.day-tabs button:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.day-tabs button.active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--card);
+}
+
+/* titik kecil buat nandain hari ini */
+.day-tabs button.today::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+
+/* buttons */
+
+.pill {
+  padding: 6px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 2px 2px 0 var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.pill:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.pill:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.pill-green {
+  background: var(--green);
+  color: white;
+}
+
+.pill-orange {
+  background: var(--yellow);
+}
+
+.link {
+  font-size: 13px;
+  color: var(--ink-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+
+/* main layout */
+
+.container {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 28px;
+  align-items: start;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 16px 24px 32px;
+}
+
+.card {
+  position: relative;
+  padding: 22px 24px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+/* tilt the wallet card a bit so it looks like paper on a desk */
+.right-side .card {
+  transform: rotate(0.4deg);
+}
+
+.tutup-hari {
+  align-self: flex-end;
+  padding: 8px 18px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.card-title h1 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: 26px;
+}
+
+.card-title .pill {
+  margin-left: auto;
+}
+
+.title-icon {
+  width: 26px;
+  height: 26px;
+  opacity: 0.85;
+}
+
+.panel {
+  margin-top: 16px;
+}
+
+.section-label,
+#budget h5,
+.spots h6 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.section-label {
+  margin: 22px 0 0;
+}
+
+
+/* schedule */
+
+#timeline {
+  margin-top: 8px;
+}
+
+.class-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+/* green line on the left for the class that's going on right now */
+.class-item.now::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  background: var(--green);
+}
+
+.time-chip {
+  padding-top: 3px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-light);
+}
+
+.time-chip b {
+  display: block;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.class-item h2 {
+  margin: 0 0 2px;
+  font-family: "Fraunces", serif;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.class-item .room {
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+.now-tag {
+  margin-left: 6px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.del {
+  align-self: start;
+  padding: 0 4px;
+  font-size: 20px;
+  line-height: 1;
+  color: #b9b0a0;
+}
+
+.del:hover {
+  color: var(--red);
+}
+
+.gap-item.short {
+  padding: 6px 0 6px 106px;
+  border-bottom: 1px dashed var(--line);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-light);
+}
+
+.gap-item.long {
+  margin: 14px -8px;
+  padding: 16px 18px;
+  background: #fff7dc;
+  border-left: 4px solid var(--yellow);
+}
+
+.gap-head {
+  font-family: "Fraunces", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.gap-sub {
+  margin: 2px 0 12px;
+  font-size: 14px;
+  color: var(--ink-light);
+}
+
+.spots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.spots h6 {
+  margin: 0 0 6px;
+  font-size: 11px;
+}
+
+.spot {
+  padding: 6px 0;
+  border-top: 1px solid #efe4c3;
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+.spot b {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--green);
+}
+
+.tag.low {
+  color: #9a6a00;
+}
+
+/* food we can't afford anymore today */
+.tag.over {
+  color: var(--red);
+  text-decoration: line-through;
+}
+
+.empty {
+  padding: 36px 8px;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-light);
+}
+
+
+/* budget */
+
+#budget h5 {
+  margin: 0;
+}
+
+.amount {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 4px 0 10px;
+}
+
+.amount h1 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+  font-size: clamp(30px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.amount h1.neg {
+  color: var(--red);
+}
+
+.amount h4 {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-light);
+}
+
+.progress {
+  height: 8px;
+  background: var(--line);
+}
+
+#progress-bar {
+  width: 0;
+  height: 100%;
+  background: var(--green);
+  transition: width 0.4s;
+}
+
+.budget-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+
+/* expense list */
+
+.tx {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tx:last-child {
+  border-bottom: 0;
+}
+
+.tx-icon {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tx-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tx-body b {
+  display: block;
+  font-weight: 500;
+}
+
+.tx-body small {
+  font-size: 12px;
+  color: var(--ink-light);
+}
+
+.tx-amt {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+}
+
+
+/* long break warning on top */
+
+.banner {
+  max-width: 1072px;
+  margin: 8px auto 0;
+  padding: 10px 14px;
+  border: 1.5px dashed var(--ink);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.banner b {
+  background: linear-gradient(transparent 55%, var(--yellow) 55%);
+}
+
+
+/* popups */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(31, 29, 26, 0.45);
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 22px 24px;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.modal-box.wide {
+  max-width: 560px;
+}
+
+.modal-box h2 {
+  margin: 0 0 14px;
+  font-family: "Fraunces", serif;
+  font-size: 24px;
+}
+
+.modal-box label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+.modal-box input,
+.modal-box select {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  padding: 7px 2px;
+  border: 0;
+  border-bottom: 1.5px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 15px "Work Sans", sans-serif;
+}
+
+.modal-box input:focus,
+.modal-box select:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+}
+
+.row > label {
+  flex: 1;
+}
+
+.modal-box .radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+}
+
+.modal-box .radio input {
+  width: auto;
+  margin: 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.cat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.cat-btn i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.cat-btn.active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--card);
+}
+
+.quick-amounts {
+  display: flex;
+  gap: 6px;
+  margin: -6px 0 12px;
+}
+
+.quick-amounts button {
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--ink-light);
+}
+
+.quick-amounts button:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.pocket-row {
+  display: grid;
+  grid-template-columns: 70px 80px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.pocket-row span {
+  font-weight: 600;
+}
+
+.pocket-row small {
+  color: var(--ink-light);
+}
+
+
+/* reflection popup */
+
+.score {
+  margin-bottom: 14px;
+  padding: 4px 0 14px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.score .verdict {
+  font-family: "Fraunces", serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.score.win .verdict span {
+  background: linear-gradient(transparent 60%, #cfe5c2 60%);
+}
+
+.score.lose .verdict span {
+  background: linear-gradient(transparent 60%, var(--red-light) 60%);
+}
+
+.score small {
+  color: var(--ink-light);
+}
+
+.streak {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  z-index: 20;
+  transform: translateX(-50%);
+  padding: 9px 16px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--card);
+  font-size: 14px;
+}
+
+.foot {
+  padding-bottom: 28px;
+  text-align: center;
+}
+
+
+/* phones */
+
+@media (max-width: 820px) {
+  .topbar {
+    padding: 20px 16px 4px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    padding: 12px 16px 28px;
+  }
+
+  .right-side {
+    margin-top: 0;
+  }
+
+  .right-side .card {
+    transform: none;
+  }
+
+  .day-tabs {
+    padding: 12px 16px 0;
+  }
+
+  .banner {
+    margin: 8px 16px 0;
+  }
+
+  .spots {
+    grid-template-columns: 1fr;
+  }
+
+  .class-item {
+    grid-template-columns: 74px 1fr auto;
+  }
+
+  .class-item.now::before {
+    left: -16px;
+  }
+
+  .gap-item.short {
+    padding-left: 88px;
+  }
+}

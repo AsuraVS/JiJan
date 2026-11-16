@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JiJan</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Ji<span>Jan</span><small>jadwal kuliah &amp; uang jajan, satu tempat</small></div>
+    </header>
+
+    <nav class="day-tabs" id="day-tabs"></nav>
+
+    <div id="gap-banner" class="banner hidden"></div>
+
+    <main class="container">
+      <section class="card">
+        <div class="card-title">
+          <img src="assets/Time.png" alt="" class="title-icon" />
+          <h1>Jadwal</h1>
+          <button class="pill" id="btn-add-class">+ Kelas</button>
+        </div>
+        <div id="timeline"></div>
+      </section>
+
+      <div class="right-side">
+      <section class="card">
+        <div class="card-title">
+          <img src="assets/Pig.png" alt="" class="title-icon" />
+          <h1>Dompet</h1>
+          <button class="pill pill-green" id="btn-add-expense">+ Catat</button>
+        </div>
+
+        <div class="panel" id="budget">
+          <h5>Sisa jatah <span id="budget-day"></span></h5>
+          <div class="amount">
+            <h1 id="remaining">Rp 0</h1>
+            <h4 id="limit">/ 0</h4>
+          </div>
+          <div class="progress"><div id="progress-bar"></div></div>
+          <div class="budget-meta">
+            <span id="day-type"></span>
+            <button class="link" id="btn-pockets">ubah jatah harian</button>
+          </div>
+        </div>
+
+        <h4 class="section-label">Pengeluaran</h4>
+        <div class="panel" id="history"></div>
+      </section>
+
+      <button class="pill pill-orange tutup-hari" id="btn-reflect">Tutup hari</button>
+      </div>
+    </main>
+
+    <div class="modal hidden" id="modal-class">
+      <form class="modal-box" id="form-class">
+        <h2>Kelas baru</h2>
+        <label>Mata kuliah<input name="subject" required placeholder="Data Structures" /></label>
+        <label>Hari<select name="day" id="class-day"></select></label>
+        <div class="row">
+          <label>Mulai<input type="time" name="start" required /></label>
+          <label>Selesai<input type="time" name="end" required /></label>
+        </div>
+        <label>Ruang<input name="room" placeholder="GK-201" /></label>
+        <div class="modal-actions">
+          <button type="button" class="link" data-close>batal</button>
+          <button type="submit" class="pill pill-green">Simpan</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal hidden" id="modal-expense">
+      <form class="modal-box" id="form-expense">
+        <h2>Habis beli apa?</h2>
+        <div class="cat-grid" id="cat-grid"></div>
+        <label>Berapa (Rp)<input type="number" name="amount" min="500" step="500" required placeholder="15000" /></label>
+        <div class="quick-amounts">
+          <button type="button" data-amt="5000">5.000</button>
+          <button type="button" data-amt="10000">10.000</button>
+          <button type="button" data-amt="15000">15.000</button>
+          <button type="button" data-amt="25000">25.000</button>
+        </div>
+        <label>Buat apa<input name="note" placeholder="es teh kantin" /></label>
+        <div class="row method">
+          <label class="radio"><input type="radio" name="method" value="Cash" checked /> Cash</label>
+          <label class="radio"><input type="radio" name="method" value="QRIS" /> QRIS / e-wallet</label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="link" data-close>batal</button>
+          <button type="submit" class="pill pill-green">Simpan</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal hidden" id="modal-pockets">
+      <form class="modal-box" id="form-pockets">
+        <h2>Jatah per hari</h2>
+        <p class="muted">Hari full di kampus biasanya butuh lebih. Hari di rumah, kencangkan ikat pinggang.</p>
+        <div id="pocket-fields"></div>
+        <div class="modal-actions">
+          <button type="button" class="link" data-close>batal</button>
+          <button type="submit" class="pill pill-green">Simpan</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal hidden" id="modal-reflect">
+      <div class="modal-box wide">
+        <h2>Gimana hari ini?</h2>
+        <div id="reflect-result"></div>
+        <canvas id="week-chart" height="160"></canvas>
+        <div class="modal-actions">
+          <button type="button" class="link" data-close>tutup</button>
+          <button type="button" class="pill" id="btn-reflect-log">Ada yang lupa dicatat</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <footer class="foot">
+      <button class="link" id="btn-reset">hapus semua data</button>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
